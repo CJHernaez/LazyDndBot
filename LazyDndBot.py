@@ -24,7 +24,7 @@ userHelper = UserHelper(users, conn)
 users = userHelper.refresh()
 
 #Configure Message Helper
-messageHelper = MessageHelper(users)
+messageHelper = MessageHelper(userHelper)
 
 #Configure DB Helper
 dbHelper = DBHelper(conn)
@@ -45,7 +45,6 @@ def setPadding(triggerPhrase):
     dbHelper.setBasePadding(triggerPhrase)
     userHelper.setBasePadding(triggerPhrase)
 
-triggerPhrase = 'justine,'
 triggerlength = 1
 setPadding(triggerlength)
 
@@ -55,11 +54,11 @@ async def on_message(message):
     if message.author == client.user:
         return
     tokenizedMessage = message.content.split(' ')
-    if tokenizedMessage[0] == triggerPhrase:
+    if messageHelper.checkUserTriggerValues(message):
         if ([x for x in message.author.roles if x.name == "Dev"]): #dont touch this unless you know what you are doing - CJ 2020
             print('User is a dev')
             if 'db' in tokenizedMessage[triggerlength]:
-                await dbHelper.getAllFromTable(message)
+                await  dbHelper.getAllFromTable(message)
             else:
                 await characterHelper.Handle(message)
 

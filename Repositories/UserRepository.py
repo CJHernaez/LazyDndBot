@@ -19,14 +19,15 @@ class UserRepository:
         rows = cur.fetchall()
 
         for row in rows:
-            dict[str(row[1]) + '#' + str(row[2])] = (row[0], row[1], row[2], row[3])
+            dict[str(row[1]) + '#' + str(row[2])] = (row[0], row[1], row[2], row[3], row[4], row[5])
 
         self.datasource = dict
+        tmp = self.datasource.values()
 
         return dict
 
     def getDiscordTagByNickname(self, nicknameToMatch):
-            for (id, name, discId, nickname) in self.datasource.values():
+            for (id, name, discId, nickname, trigger1, trigger2) in self.datasource.values():
                 if nickname.lower() == nicknameToMatch.lower():
                     return name+'#'+ str(discId)
             return 'Nickname ' + nicknameToMatch  + ' Not Found'
@@ -34,13 +35,13 @@ class UserRepository:
 
     def getUserIdByDiscordTag(self, discordTag):
         tokenizedTag = discordTag.split('#')
-        for (id, name, discId, nickname) in self.datasource.values():
+        for (id, name, discId, nickname, trigger1, trigger2) in self.datasource.values():
             if name.lower() == tokenizedTag[0].lower() and discId == int(tokenizedTag[1]):
                 return id
-        return 'Discord Tag' + discordTag + ' Not Found'
+        return 'User Id Not Found'
 
     def getUserIdByNickname(self, nicknameToMatch):
-        for (id, name, discId, nickname) in self.datasource.values():
+        for (id, name, discId, nickname, trigger1, trigger2) in self.datasource.values():
             if nickname.lower() == nicknameToMatch.lower():
                 return id
         return 'Nickname ' + nicknameToMatch + ' Not Found'
@@ -83,3 +84,7 @@ class UserRepository:
         print("User" + discordTag + ' deleted. id: ' + str(cur.lastrowid))
         del self.datasource[discordTag]
         return discordTag + ' deleted'
+
+    def getTriggerWordsByDiscordTag(self, discordTag):
+        tmp = self.datasource[discordTag]
+        return self.datasource[discordTag][4], self.datasource[discordTag][5]

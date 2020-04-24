@@ -24,7 +24,7 @@ class DBHelper:
             cur = self.conn.cursor()
 
             try:
-                cur.execute("SELECT * FROM " + tokenizedMessage[self.basepadding].upper())
+                cur.execute("SELECT * FROM " + tokenizedMessage[self.basepadding+1].upper())
             except sqlite3.OperationalError as e:
                 return e
 

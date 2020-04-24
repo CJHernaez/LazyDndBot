@@ -68,7 +68,7 @@ class CharacterRepository:
             rows = cur.fetchall()
             self.conn.commit()
             if not rows:
-                return ('No Records Found with name {0} belonging to user_ID: '.format(characterName, userId))
+                return ('No Records Found with name {0} belonging to user_ID: {1}'.format(characterName, userId))
         except sqlite3.OperationalError as e:
             return e
 
@@ -93,5 +93,5 @@ class CharacterRepository:
         self.datasource[characterName]['active'] = 1 #activate the one with the correct name
 
 
-        return rows
+        return characterName + ' loaded.'
 

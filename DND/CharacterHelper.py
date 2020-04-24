@@ -58,8 +58,9 @@ class CharacterHelper:
         return message.channel.send('Options: Add, View, Delete, Update, Refresh, Help')
 
     def loadCharacter(self, characterName, userId):
-     self.characterRepository.loadCharacter(characterName, userId)
-     return characterName + ' loaded'
+        return self.characterRepository.loadCharacter(characterName, userId)
+
+
 
     def getActiveCharacterByUserId(self, userId):
         for record in self.characterRepository.datasource.values():

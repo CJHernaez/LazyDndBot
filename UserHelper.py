@@ -62,6 +62,8 @@ class UserHelper:
     def getUserIdByMessage(self, message):
         return self.getUserIdByDiscordTag(message.author.name + '#' + message.author.discriminator)
 
+    def getTriggerWordsByDiscordTag(self, discordTag):
+        return self.userRepository.getTriggerWordsByDiscordTag(discordTag)
     def deleteUserbyDiscordTag(self, discordTag):
             return self.userRepository.deleteUserByDiscordTag(discordTag)
 

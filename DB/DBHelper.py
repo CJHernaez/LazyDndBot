@@ -9,18 +9,18 @@ def GenerateDB():
         cursor = conn.cursor()
         # Create table - USERS
         cursor.execute('''CREATE TABLE USERS
-                     ([ID] INTEGER PRIMARY KEY AUTOINCREMENT,[USERNAME] text, [DISCORD_ID] integer, [COMMON_NAME] text unique)''')
+                     ([ID] INTEGER PRIMARY KEY AUTOINCREMENT,[USERNAME] text, [DISCORD_ID] integer, [COMMON_NAME] text unique, [TRIGGER_PHRASE_1] text, [TRIGGER_PHRASE_2] text)''')
 
 
-        examples = [('Prophecies', 9660, 'CJ'),
-                    ('JamesDebt', 4815, 'James'),
-                    ('TheKarmoable', 1732, 'Mason'),
-                    ('seamonsterpasta', 5554, 'Maisano'),
-                    ('Noobmeister', 9588, 'Mericle')]
+        examples = [('Prophecies', 9660, 'CJ', 'Justine', 'Justine,'),
+                    ('JamesDebt', 4815, 'James', 'cuck', 'cuck,'),
+                    ('TheKarmoable', 1732, 'Mason', 'cuck', 'cuck,'),
+                    ('seamonsterpasta', 5554, 'Maisano', 'cuck', 'cuck,'),
+                    ('Noobmeister', 9588, 'Mericle', 'cuck', 'cuck,')]
         cursor.executemany("""INSERT INTO USERS
-                                 ( USERNAME, DISCORD_ID, COMMON_NAME) 
+                                 ( USERNAME, DISCORD_ID, COMMON_NAME, TRIGGER_PHRASE_1, TRIGGER_PHRASE_2) 
                                   VALUES 
-                                 (?, ?, ?)
+                                 (?, ?, ?, ?, ?)
                                  """, examples)
 
 
@@ -69,7 +69,8 @@ def GenerateDB():
         # set up a foreign key here eventually
 
         dndCharacters = [(1, 'Kerrigan', 1, 'Torn Asunder', 1, 2, 1, 1, 3, 1, 3, 55, 15, 2, 2, 3, 1, 4, 1, 4, 3, 4, 1, 3, 1, 3, 1, 1, 4, 2, 2, 3, 1),
-                         (2, 'Valamour', 1, 'Being Nice to Goblins', 1, 3, 1, 0, 2, 4, 3, 30, 14, 7, 6, 2, 0, 1, 19, 0, 2, 7, 3, 2, 0, 8, 7, 7, 0, 6, 3, 2, 0)]
+                         (2, 'Valamour', 1, 'Being Nice to Goblins', 1, 3, 1, 0, 2, 4, 3, 30, 14, 7, 6, 2, 0, 1, 10, 0, 2, 7, 3, 2, 0, 8, 7, 7, 0, 6, 3, 2, 0),
+                         (3, 'Sigfried', 5, 'Being Nice to Goblins', 2, 0, 5, 0, 1, 3, 3, 25, 19, 0, 0, 1, 0, 5, 3, 3, 1, 3, 0, 1, 0, 1, 3, 6, 3, 0, 0, 1, 1)]
 
 
 
