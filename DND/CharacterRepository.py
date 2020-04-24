@@ -95,3 +95,20 @@ class CharacterRepository:
 
         return characterName + ' loaded.'
 
+    def uploadCharacter(self, character):
+        cursor = self.conn.cursor()
+
+        tupilized = character.toTuple()
+        cursor.execute("""INSERT INTO DND_CHARACTERS
+                                        (CHARACTER_NAME, CREATOR_USER_ID, CAMPAIGN, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE,
+                                        WISDOM, CHARISMA, PROFICIENCY, WALKING_SPEED, AC, INITIATIVE, ACROBATICS, ANIMAL_HANDLING, 
+                                        ARCANA, ATHLETICS, DECEPTION, HISTORY, INSIGHT, INTIMIDATION, INVESTIGATION, MEDICINE,
+                                        NATURE, PERCEPTION, PERFORMANCE, PERSUASION, RELIGION, SLEIGHT_OF_HAND, STEALTH, SURVIVAL, ACTIVE)
+                                           VALUES 
+                                          (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                                           , ?, ?, ?, ?, ?)
+                                          """, tupilized)
+
+        self.refresh()
+
+

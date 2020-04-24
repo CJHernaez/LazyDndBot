@@ -16,7 +16,8 @@ def GenerateDB():
                     ('JamesDebt', 4815, 'James', 'cuck', 'cuck,'),
                     ('TheKarmoable', 1732, 'Mason', 'cuck', 'cuck,'),
                     ('seamonsterpasta', 5554, 'Maisano', 'cuck', 'cuck,'),
-                    ('Noobmeister', 9588, 'Mericle', 'cuck', 'cuck,')]
+                    ('Noobmeister', 9588, 'Mericle', 'cuck', 'cuck,'),
+                    ('NoxiumVulpus', 1085, 'Mikayla', 'snek', 'snek,')]
         cursor.executemany("""INSERT INTO USERS
                                  ( USERNAME, DISCORD_ID, COMMON_NAME, TRIGGER_PHRASE_1, TRIGGER_PHRASE_2) 
                                   VALUES 

@@ -3,9 +3,12 @@ import sqlite3
 import logging
 import os.path
 from os import path
+import json
 
-from DB.DBHelper import GenerateDB
+
+from DB.DBGenerator import GenerateDB
 from DBHelper import DBHelper
+from DND.Character import Character
 from DND.CharacterHelper import CharacterHelper
 from MessageHelper import MessageHelper
 from UserHelper import UserHelper
@@ -35,6 +38,10 @@ characters = {}
 characterHelper = CharacterHelper(characters, conn)
 characters = characterHelper.refresh()
 characterHelper.setUserHelper(userHelper)
+
+
+
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))

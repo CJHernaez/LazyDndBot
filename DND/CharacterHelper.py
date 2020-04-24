@@ -77,3 +77,5 @@ class CharacterHelper:
         roll = random.randrange(1, 20)
         return 'Rolling {0} for {1}. Modifier = {2}\nRoll: {3}\nTotal: {4}'.format(attribute, activeChar['charactername'], modifier, roll, modifier+roll)
 
+    def uploadCharacter(self, character):
+        return self.characterRepository.uploadCharacter(character)

@@ -9,7 +9,7 @@ class MessageHelper:
             return message.author.name + '#' + message.author.discriminator
 
         def checkUserTriggerValues(self, message):
-            #first check to see if that user is in the DB
+             #first check to see if that user is in the DB
             if self.userHelper.getUserIdByMessage(message) == 'User Id Not Found':
                 return False
 
