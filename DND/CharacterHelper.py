@@ -30,7 +30,7 @@ class CharacterHelper:
         tokenizedMessage = message.content.split(' ')
         optionCommand = self.basepadding
         if len(tokenizedMessage) > optionCommand:
-            if (tokenizedMessage[optionCommand].lower() == 'view'  or tokenizedMessage[optionCommand].lower() == 'show') and len(tokenizedMessage) >= optionCommand + 1: # view {name}
+            if (tokenizedMessage[optionCommand].lower() == 'view' or tokenizedMessage[optionCommand].lower() == 'show') and len(tokenizedMessage) >= optionCommand + 1: # view {name}
                 return message.channel.send(str(self.getCharacterStatsByName(tokenizedMessage[optionCommand + 1].lower())).replace(', ', '\n').replace('\'','').replace('{', '').replace('}', '')) #3rd element is characterName
 
             if tokenizedMessage[optionCommand].lower() == 'refresh' and tokenizedMessage[optionCommand+1].lower() == 'characters':
@@ -74,7 +74,7 @@ class CharacterHelper:
 
     def roll(self, attribute, userID):
         activeChar = self.getActiveCharacterByUserId(userID)
-        if activeChar is '':
+        if activeChar == '':
             return 'No Active Character Found for userID: ' + userID
 
         modifier = activeChar[str(attribute)]
@@ -83,7 +83,7 @@ class CharacterHelper:
 
     def check(self, attribute, userID):
         activeChar = self.getActiveCharacterByUserId(userID)
-        if activeChar is '':
+        if activeChar == '':
             return 'No Active Character Found for userID: ' + userID
 
         modifier = activeChar[str(attribute)]

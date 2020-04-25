@@ -14,7 +14,7 @@ import asyncio
 
 from DND.Roller import Roller
 
-client = commands.Bot(command_prefix = ".. ")
+client = commands.Bot(command_prefix = ".")
 
 
 from DB.DBGenerator import GenerateDB
