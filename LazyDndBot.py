@@ -4,7 +4,7 @@ import logging
 import os.path
 from os import path
 import json
-
+from discord.utils import get
 
 from DB.DBGenerator import GenerateDB
 from DBHelper import DBHelper
@@ -40,7 +40,29 @@ characters = characterHelper.refresh()
 characterHelper.setUserHelper(userHelper)
 
 
+try:
+    with open('Oirasor.json') as f:
+        veila = Character(json.load(f))
+    characterHelper.uploadCharacter(veila)
 
+
+    with open('Amsyl.json') as f:
+        veila = Character(json.load(f))
+    characterHelper.uploadCharacter(veila)
+
+
+    with open('Hessai.json') as f:
+        veila = Character(json.load(f))
+    characterHelper.uploadCharacter(veila)
+
+
+    with open('Rosario.json') as f:
+        veila = Character(json.load(f))
+    characterHelper.uploadCharacter(veila)
+
+
+except sqlite3.IntegrityError:
+    print('characters already created')
 
 @client.event
 async def on_ready():
@@ -60,10 +82,10 @@ async def on_message(message):
 
     if message.author == client.user:
         return
-    tokenizedMessage = message.content.split(' ')
+    tokenizedMessage = message.content.replace(',','').split(' ')
     if messageHelper.checkUserTriggerValues(message):
-        if ([x for x in message.author.roles if x.name == "Dev"]): #dont touch this unless you know what you are doing - CJ 2020
-            print('User is a dev')
+       # if ([x for x in message.author.roles if x.name == "Dev"]): #dont touch this unless you know what you are doing - CJ 2020
+            print (messageHelper.getDiscordTagByMessage(message) + ' is a valid user')
             if 'db' in tokenizedMessage[triggerlength]:
                 await  dbHelper.getAllFromTable(message)
             else:

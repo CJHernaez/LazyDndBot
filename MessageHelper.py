@@ -14,7 +14,7 @@ class MessageHelper:
                 return False
 
             potentialTriggerWords = self.getTriggerWordsByMessage(message)
-            tokenizedMessage = message.content.split(' ')
+            tokenizedMessage = message.content.replace(',','').split(' ')
             if [x for x in potentialTriggerWords if x.lower() == tokenizedMessage[0].lower()]:
                 return True
 

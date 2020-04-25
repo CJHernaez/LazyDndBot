@@ -12,12 +12,12 @@ def GenerateDB():
                      ([ID] INTEGER PRIMARY KEY AUTOINCREMENT,[USERNAME] text, [DISCORD_ID] integer, [COMMON_NAME] text unique, [TRIGGER_PHRASE_1] text, [TRIGGER_PHRASE_2] text)''')
 
 
-        examples = [('Prophecies', 9660, 'CJ', 'Justine', 'Justine,'),
-                    ('JamesDebt', 4815, 'James', 'cuck', 'cuck,'),
-                    ('TheKarmoable', 1732, 'Mason', 'cuck', 'cuck,'),
-                    ('seamonsterpasta', 5554, 'Maisano', 'cuck', 'cuck,'),
-                    ('Noobmeister', 9588, 'Mericle', 'cuck', 'cuck,'),
-                    ('NoxiumVulpus', 1085, 'Mikayla', 'snek', 'snek,')]
+        examples = [('Prophecies', 9660, 'CJ', 'j', 'justine'),
+                    ('JamesDebt', 4815, 'James', 'j', 'debt'),
+                    ('TheKarmoable', 1732, 'Mason', 'm', 'cuck'),
+                    ('seamonsterpasta', 5554, 'Maisano', 'm', 'cuck'),
+                    ('Noobmeister', 9588, 'Mericle', 'm', 'cuck'),
+                    ('NoxiumVulpus', 1085, 'Mikayla', 'r', 'snek')]
         cursor.executemany("""INSERT INTO USERS
                                  ( USERNAME, DISCORD_ID, COMMON_NAME, TRIGGER_PHRASE_1, TRIGGER_PHRASE_2) 
                                   VALUES 
