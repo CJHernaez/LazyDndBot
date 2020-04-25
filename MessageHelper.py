@@ -23,3 +23,6 @@ class MessageHelper:
         def getTriggerWordsByMessage(self, message):
             return self.userHelper.getTriggerWordsByDiscordTag(self.getDiscordTagByMessage(message))
 
+
+        def getNicknameByMessage(self, message):
+            return self.userHelper.getNicknameByDiscordTag(self.getDiscordTagByMessage(message))
